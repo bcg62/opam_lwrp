@@ -7,10 +7,9 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
-  - name: ubuntu-13.04
 
 suites:
   - name: default
     run_list:
-      - recipe[opam::default]
+      - recipe[opam::opamtest]
     attributes:
