@@ -55,6 +55,15 @@ end
 ```
 
 
+# Test Kitchen
+
+
+To test it against Ubuntu 12.04 via [Test Kitchen](http://kitchen.ci/), run:
+
+```
+kitchen verify
+```
+
 #Contributing
 
 Fork this repo, create a feature branch using something like this:
