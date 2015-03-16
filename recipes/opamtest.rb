@@ -1,15 +1,15 @@
 #
 # Cookbook Name:: opam
-# Recipe:: default
+# Recipe:: opamtest.rb
 #
 # Copyright (c) 2015 Dave Parfitt, All Rights Reserved.
 
 # generally frowned upon, but... nothing else works?
-if platform?("ubuntu")
-    execute "apt-get update" do
+execute "apt-get update" do
       command "apt-get update"
       ignore_failure true
-    end
+
+  only_if { node["platform"] == "ubuntu" }
 end
 
 user "dparfitt" do
@@ -19,7 +19,11 @@ user "dparfitt" do
   supports :manage_home=>true
 end
 
-opam_setup do
+ohai "reload ohai" do
+  action :reload
+end
+
+opam_setup "foo" do
   user "dparfitt"
   group "dparfitt"
   vcs  ["git", "mercurial"]
