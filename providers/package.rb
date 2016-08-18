@@ -11,6 +11,7 @@ action :install do
     else
       homedir = "/home/#{new_resource.user}"
     end
+    homedir = "/root" if new_resource.user == 'root'
     # doesn't support windows yet, I don't have a windows box :-(
     environment ({'HOME' => homedir, 'USER' => new_resource.user})
     user new_resource.user
@@ -29,6 +30,7 @@ action :update do
     else
       homedir = "/home/#{new_resource.user}"
     end
+    homedir = "/root" if new_resource.user == 'root'
     environment ({'HOME' => homedir, 'USER' => new_resource.user})
     user new_resource.user
     converge_by "opam update" do
@@ -45,6 +47,7 @@ action :upgrade do
     else
       homedir = "/home/#{new_resource.user}"
     end
+    homedir = "/root" if new_resource.user == 'root'
     environment ({'HOME' => homedir, 'USER' => new_resource.user})
     user new_resource.user
     converge_by "opam upgrade" do
@@ -61,6 +64,7 @@ action :remove do
     else
       homedir = "/home/#{new_resource.user}"
     end
+    homedir = "/root" if new_resource.user == 'root'
     environment ({'HOME' => homedir, 'USER' => new_resource.user})
     user new_resource.user
     converge_by "opam remove" do
@@ -101,6 +105,7 @@ action :setup do
     else
       homedir = "/home/#{params[:user]}"
     end
+    homedir = "/root" if new_resource.user == 'root'
 
     environment ({'HOME' => homedir, 'USER' => params[:user]})
     user params[:user]
